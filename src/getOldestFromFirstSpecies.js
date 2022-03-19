@@ -11,6 +11,6 @@ function getOldestFromFirstSpecies(selectedId) {
   // const selectedAnimal = selectedSpecie.find((element) => element.age === oldestAnimal);
   return selectedAnimal;
 }
-console.log(getOldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+// console.log(getOldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 module.exports = getOldestFromFirstSpecies;
