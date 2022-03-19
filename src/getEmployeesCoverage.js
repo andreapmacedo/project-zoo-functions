@@ -1,57 +1,122 @@
 const { employees, species } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
+const getEmployeeByName = require('./getEmployeeByName');
 
 function getSpecies(responsibleFor) {
-  // return species.filter((animal) => responsibleFor.includes(animal.id));
-  // console.log(responsibleFor);
-  const animals = species.filter((animal) => responsibleFor.includes(animal.id));
-  // console.log(animals);
-  return animals.map((element) => element.name);
-  // return responsibleFor;
+  const animals = species.filter((specie) => responsibleFor.includes(specie.id));
+  return animals.map((specie) => specie.name);
 }
+
 function getLocations(responsibleFor) {
-  const employeesResp = employees.filter((employee) => responsibleFor.includes(employee.id));
-  // console.log(employees);
-  return employeesResp.map((element) => element.name);
-  // return responsibleFor;
+  const empLocation = species.filter((specie) => responsibleFor.includes(specie.id));
+  return empLocation.map((specie) => specie.location);
+}
+
+const createObj = (value) => ({
+  id: value.id,
+  fullName: `${value.firstName} ${value.lastName}`,
+  species: getSpecies(value.responsibleFor),
+  locations: getLocations(value.responsibleFor),
+});
+
+function getAllEmp() {
+  const empList = [];
+  employees.forEach((item) => {
+    empList.push(createObj(item));
+  });
+  return empList;
 }
 
 function getEmpById(empId) {
-  // console.log(id);
-  const result = employees.reduce((acc, curr) => {
-    if (curr.id === empId.id) {
-      // console.log(curr.id === empId.id);
-      // acc = curr;
-      const responsibleFor = getSpecies(acc.responsibleFor);
-      const animalsLocations = getLocations(acc.managers);
-      acc = {
-        id: empId.id, fullName: `${curr.firstName} ${curr.lastName}`,
-        species: responsibleFor, locations: animalsLocations,
-        // species: acc.responsibleFor, locations: 1,
-      };
-    }
-    return acc;
-  });
-  return result;
+  const empFund = employees.filter((element) => element.id === empId.id);
+  return empFund.map((item) => createObj(item))[0];
 }
 
-function getEmployeesCoverage(EmployeeAtr) {
-  // const employeeAtrList = Object.keys(EmployeeAtr);
-  let result;
-  const employeeKey = Object.keys(EmployeeAtr);
-  // console.log(employeeKey);
-  if (employeeKey[0] === 'id') {
-    // console.log('retornou um id');
-    result = getEmpById(EmployeeAtr);
-  } else {
-    // console.log('retornou um nome');
-    return 1;
-  }
-  return result;
+function getEmpByName(empName) {
+  const empList = [];
+  empList.push(getEmployeeByName(empName.name));
+  return empList.map((item) => createObj(item))[0];
+}
+
+function getEmployeesCoverage(employeeAtr) {
+  if (!employeeAtr) return getAllEmp();
+  const mapEmployee = employees.find((elemento) => (elemento.firstName === employeeAtr.name
+    || elemento.lastName === employeeAtr.name || elemento.id === employeeAtr.id));
+  if (!mapEmployee) throw new Error('Informações inválidas');
+  const employeeKey = Object.keys(employeeAtr);
+  if (employeeKey[0] === 'id') return getEmpById(employeeAtr);
+  return getEmpByName(employeeAtr);
 }
 
 // console.log(getEmployeesCoverage({ name: 'Sharonda' }));
 // console.log(getEmployeesCoverage({ name: 'Spry' }));
-console.log(getEmployeesCoverage({ id: '4b40a139-d4dc-4f09-822d-ec25e819a5ad' }));
+// console.log(getEmployeesCoverage({ name: 'nome invalido' }));
+// console.log(getEmployeesCoverage({ id: '4b40a139-d4dc-4f09-822d-ec25e819a5ad' }));
+// console.log(getEmployeesCoverage({ id: 'c1f50212-35a6-4ecd-8223-f835538526c2' }));
+// console.log(getEmployeesCoverage({ id: 'c1f50212-35a6-4ecd-8223-f835532' }));
+// console.log(getEmployeesCoverage());
 
 module.exports = getEmployeesCoverage;
+// funcionando (necessário para o código comentado)
+// function getEmp() {
+//   const empList = [];
+//   const result = employees.reduce((acc, curr) => {
+//     const responsibleFor = getSpecies(curr.responsibleFor);
+//     const animalsLocations = getLocations(curr.responsibleFor);
+//     empList.push({
+//       id: curr.id,
+//       fullName: `${curr.firstName} ${curr.lastName}`,
+//       species: responsibleFor,
+//       locations: animalsLocations,
+//     });
+//     return empList;
+//     // return acc;
+//   });
+//   return result;
+// }
+
+// funcionando (solução com forEach para parametros com IDs)
+// function getEmpById(empId) {
+//   const empList = [];
+//   const empFound = employees.filter((element) => element.id === empId.id);
+//   empFound.forEach((item) => {
+//     empList.push(createObj(item));
+//   });
+//   return empList;
+// }
+
+// funcionando (solução com o reduce)
+// function getEmpById(empId) {
+//   const result = employees.reduce((acc, curr) => {
+//     if (curr.id === empId.id) {
+//       const responsibleFor = getSpecies(curr.responsibleFor);
+//       const animalsLocations = getLocations(curr.responsibleFor);
+//       acc = {
+//         id: empId.id,
+//         fullName: `${curr.firstName} ${curr.lastName}`,
+//         species: responsibleFor,
+//         locations: animalsLocations,
+//       };
+//     }
+//     return acc;
+//   });
+//   return result;
+// }
+// Funcionando (solução com o reduce)
+// function getEmp() {
+//   const empList = [];
+//   const result = employees.reduce((acc, curr) => {
+//     const responsibleFor = getSpecies(curr.responsibleFor);
+//     const animalsLocations = getLocations(curr.responsibleFor);
+//     empList.push({
+//       id: curr.id,
+//       fullName: `${curr.firstName} ${curr.lastName}`,
+//       species: responsibleFor,
+//       locations: animalsLocations,
+//     });
+//     return empList;
+//     // return acc;
+//   });
+//   return result;
+// }
+* /

@@ -6,5 +6,8 @@ function getEmployeeByName(employeeName) {
   return employees.find(({ firstName, lastName }) =>
     employeeName.includes(firstName) || employeeName.includes(lastName));
 }
-console.log(getEmployeeByName('Ola Orloff'));
+// console.log(getEmployeeByName('Ola'));
+// console.log(getEmployeeByName('fdaadsf as'));
+// console.log(getEmployeeByName('Orloff'));
+// console.log(getEmployeeByName('Ola Orloff'));
 module.exports = getEmployeeByName;
