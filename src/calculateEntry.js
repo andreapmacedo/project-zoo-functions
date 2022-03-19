@@ -35,21 +35,16 @@ function calculateEntry(entrantsList) {
   // return total;
 
   const persons = countEntrants(entrantsList);
-  // return Object.keys(persons).reduce((acc, curr) => acc + (persons[curr] * data.prices[curr]), 0);
+  return Object.keys(persons).reduce((acc, curr) => acc + (persons[curr] * data.prices[curr]), 0);
 
-  const result = Object.keys(persons).reduce((acc, curr) => {
-    console.log(`cuur -> ${curr}, persons[curr] -> ${persons[curr]} * data.prices[curr] -> ${data.prices[curr]} `);
-    console.log(`cuur -> ${curr}, persons[${curr}] -> ${persons[curr]} * data.prices[${curr}] -> ${data.prices[curr]} `);
-    return acc + (persons[curr] * data.prices[curr]);
-  }, 0);
-  return result;
-
+  // const result = Object.keys(persons).reduce((acc, curr) => {
+  // console.log(`cuur -> ${curr}, persons[curr] -> ${persons[curr]} * data.prices[curr] -> ${data.prices[curr]} `);
+  // console.log(`cuur -> ${curr}, persons[${curr}] -> ${persons[curr]} * data.prices[${curr}] -> ${data.prices[curr]} `);
+  // return acc + (persons[curr] * data.prices[curr]);
+  // }, 0);
+  // return result;
 }
 // console.log(calculateEntry({}));
 console.log(calculateEntry(entrants));
 
 module.exports = { calculateEntry, countEntrants };
-/*
-  // console.log(data.prices.adult);
-  // console.log(persons);
-  */

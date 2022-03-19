@@ -57,6 +57,7 @@ function getEmployeesCoverage(employeeAtr) {
 // console.log(getEmployeesCoverage());
 
 module.exports = getEmployeesCoverage;
+
 // funcionando (necessário para o código comentado)
 // function getEmp() {
 //   const empList = [];
@@ -119,4 +120,3 @@ module.exports = getEmployeesCoverage;
 //   });
 //   return result;
 // }
-* /
