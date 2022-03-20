@@ -58,7 +58,7 @@ function getEmployeesCoverage(employeeAtr) {
 
 module.exports = getEmployeesCoverage;
 
-// funcionando (necessário para o código comentado)
+// funcionando (necessário para soluções com reduce/forEach)
 // function getEmp() {
 //   const empList = [];
 //   const result = employees.reduce((acc, curr) => {
