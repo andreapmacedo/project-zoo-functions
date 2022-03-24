@@ -3,6 +3,7 @@ const data = require('../data/zoo_data');
 const getEmployeeByName = require('./getEmployeeByName');
 
 function getSpecies(responsibleFor) {
+  console.log(responsibleFor);
   const animals = species.filter((specie) => responsibleFor.includes(specie.id));
   return animals.map((specie) => specie.name);
 }
@@ -51,13 +52,13 @@ function getEmployeesCoverage(employeeAtr) {
 // console.log(getEmployeesCoverage({ name: 'Sharonda' }));
 // console.log(getEmployeesCoverage({ name: 'Spry' }));
 // console.log(getEmployeesCoverage({ name: 'nome invalido' }));
-// console.log(getEmployeesCoverage({ id: '4b40a139-d4dc-4f09-822d-ec25e819a5ad' }));
+console.log(getEmployeesCoverage({ id: '4b40a139-d4dc-4f09-822d-ec25e819a5ad' }));
 // console.log(getEmployeesCoverage({ id: 'c1f50212-35a6-4ecd-8223-f835538526c2' }));
 // console.log(getEmployeesCoverage({ id: 'c1f50212-35a6-4ecd-8223-f835532' }));
 // console.log(getEmployeesCoverage());
 
 module.exports = getEmployeesCoverage;
-
+// anterior
 // funcionando (necessário para soluções com reduce/forEach)
 // function getEmp() {
 //   const empList = [];
@@ -119,4 +120,33 @@ module.exports = getEmployeesCoverage;
 //     // return acc;
 //   });
 //   return result;
+// }
+// enxuta
+// function getSpecies(respFor) {
+//   return species.filter((element) =>
+//     respFor.includes(element.id)).map((element) => element.name);
+// }
+// function getLocation(respFor) {
+//   return species.filter((element) =>
+//     respFor.includes(element.id)).map((element) => element.location);
+// }
+// function createEmployees(pessoa) {
+//   return {
+//     id: pessoa.id,
+//     fullName: `${pessoa.firstName} ${pessoa.lastName}`,
+//     species: getSpecies(pessoa.responsibleFor),
+//     locations: getLocation(pessoa.responsibleFor),
+//   };
+// }
+// function createAllEmployees() {
+//   const listAll = [];
+//   employees.forEach((element) => listAll.push(createEmployees(element)));
+//   return listAll;
+// }
+// function getEmployeesCoverage(person) {
+//   if (person === undefined) return createAllEmployees();
+//   const pessoa = data.employees.find((element) => element.firstName === person
+//     .name || element.lastName === person.name || element.id === person.id);
+//   if (!pessoa) throw new Error('Informações inválidas');
+//   return createEmployees(pessoa);
 // }

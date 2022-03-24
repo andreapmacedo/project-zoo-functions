@@ -11,6 +11,7 @@ const createObj = (scheduleTarget, exhibition) => ({
     exhibition,
   },
 });
+
 const createObj2 = (scheduleTarget, exhibition) => ({
   officeHour:
     `Open from ${data.hours[scheduleTarget].open}am until ${data.hours[scheduleTarget].close}pm`,

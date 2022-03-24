@@ -1,13 +1,13 @@
 const data = require('../data/zoo_data');
 
-// const entrants = [
-//   { name: 'Lara Carvalho', age: 5 },
-//   { name: 'Frederico Moreira', age: 5 },
-//   { name: 'Pedro Henrique Carvalho', age: 5 },
-//   { name: 'Maria Costa', age: 18 },
-//   { name: 'Núbia Souza', age: 18 },
-//   { name: 'Carlos Nogueira', age: 50 },
-// ];
+const entrants = [
+  { name: 'Lara Carvalho', age: 5 },
+  { name: 'Frederico Moreira', age: 5 },
+  { name: 'Pedro Henrique Carvalho', age: 5 },
+  { name: 'Maria Costa', age: 18 },
+  { name: 'Núbia Souza', age: 18 },
+  { name: 'Carlos Nogueira', age: 50 },
+];
 
 function countEntrants(entrantsList) {
   const result = entrantsList.reduce((acc, curr) => {
@@ -22,10 +22,7 @@ function countEntrants(entrantsList) {
   }, { child: 0, adult: 0, senior: 0 });
   return result;
 }
-// console.log(countEntrants(entrants));
-// console.log(Object.keys(entrants));
-// if (!entrants || Object.keys(entrants) === {}) return 0;
-
+console.log(countEntrants(entrants));
 function calculateEntry(entrantsList) {
   if (!entrantsList || Object.keys(entrantsList).length === 0) return 0;
   const entrantsAges = countEntrants(entrantsList);
@@ -45,6 +42,6 @@ function calculateEntry(entrantsList) {
   // return result;
 }
 // console.log(calculateEntry({}));
-// console.log(calculateEntry(entrants));
+console.log(calculateEntry(entrants));
 
 module.exports = { calculateEntry, countEntrants };

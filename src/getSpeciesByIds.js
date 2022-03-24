@@ -11,11 +11,9 @@ const data = require('../data/zoo_data');
 function getSpeciesByIds(...ids) {
   // console.log(species);
   // console.log(ids);
-  // return species.filter((element) => ids.includes(element.id));
-  // return species.filter((element) => ids.includes(element.id));
   // return species.filter((element) => element.id === ids[0].id);
-  const resp = species.filter((element) => ids.includes(element.id));
-  return resp;
+  const specieFound = species.filter((element) => ids.includes(element.id));
+  return specieFound;
 }
 // console.log(species[0].id);
 // console.log(species[0].id);
